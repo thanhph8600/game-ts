@@ -1,0 +1,53 @@
+<!-- src/views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Express with TypeScript</title>
+  <!-- Include this in the <head> of your HTML file -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div id="main" class="h-screen bg-gray-200 backdrop-blur-sm bg-cover bg-center bg-fixed overflow-y-auto" style="background-image: url();">
+    <h1 class=" text-center py-4 font-black text-2xl uppercase text-green-500 ">game pokemon</h1>
+    <p class=" text-center ">Chọn 2 hình giống nhau</p>
+    <div class="container m-auto py-8">
+      <div class="flex gap-3">
+        <div class="w-2/12 p-2">
+          <div class="flex flex-col gap-2">
+            <h2 class="text-xl font-semibold">Lever <%= index-1 %></h2>
+            <p>Your Name: <%= name %></p>
+            <a href="/pokemon"><i class="font-semibold fa fa-repeat hover:text-blue-500" aria-hidden="true" title="Chơi lại"></i> Chơi lại</a>
+            <a href="/"><i class="fa fa-sign-out hover:text-blue-500" aria-hidden="true"></i> Tạo tên khác</a>
+          </div>
+        </div>
+        <div class="w-8/12 bg-white-500 p-2">
+          <div class=" grid grid-cols-6 gap-2">
+            <% for (const item of pokemon) { %>
+              <div class=" h-[180px]">
+                <div data="<%= item.id %>" class="flip-container choosed" >
+                  <div  class="flipper" >
+                    <div class="front border" style="background: url('https://upload.wikimedia.org/wikipedia/vi/3/3b/Pokemon_Trading_Card_Game_cardback.jpg') center/cover;"></div>
+                    <div id-pokemon="<%=item.id%>" class="back " style="background:  url('<%= item.thumb%>') center/cover;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <input type="hidden" name="index" value="<%= index %>">
+        <div class="w-2/12  p-2 text-center">
+          <canvas id="myCanvas" class="m-auto" width="100" height="100"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/public/js/pokemon.js"></script>
+</html>

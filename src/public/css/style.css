@@ -1,0 +1,30 @@
+  
+  .flip-container {
+    perspective: 1000px;
+  }
+  
+  .flipper {
+    height: 180px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    border-radius: 7px;
+
+  }
+  
+  .front,
+  .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 7px;
+    backface-visibility: hidden;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+  }
+  .front {
+    transform: rotateY(0deg);
+  }
