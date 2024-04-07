@@ -27,9 +27,9 @@
           </div>
         </div>
         <div class="w-8/12 bg-white-500 p-2">
-          <div class=" grid grid-cols-6 gap-2">
+          <div class=" grid grid-cols-9 gap-2">
             <% for (const item of pokemon) { %>
-              <div class=" h-[180px]">
+              <div class=" h-[110px]">
                 <div data="<%= item.id %>" class="flip-container choosed" >
                   <div  class="flipper" >
                     <div class="front border" style="background: url('https://upload.wikimedia.org/wikipedia/vi/3/3b/Pokemon_Trading_Card_Game_cardback.jpg') center/cover;"></div>
@@ -48,6 +48,17 @@
       </div>
     </div>
   </div>
+  <div class="popup hidden bg-black fixed top-0 left-0 h-screen w-screen bg-opacity-30">
+    <div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4">
+      <div class="p-4 bg-white rounded-lg shadow-md flex justify-center flex-col gap-3 items-center">
+        <div class="close-popup absolute cursor-pointer top-1 right-1 w-5 h-5 flex items-center justify-center border rounded-full hover:bg-gray-400 hover:text-white">
+          <p>x</p>
+        </div>
+        <h2 class="uppercase text-xl font-bold text-green-500">Bạn đã hết thời gian</h2>
+        <a href="/pokemon" class="my-5 px-6 py-2 bg-blue-500 text-white rounded-md">Chơi lại</a>
+      </div>
+    </div>
+  </div>
 </body>
-<script src="/public/js/pokemon.js"></script>
+<script src="/public/components/pokemon.js"></script>
 </html>

@@ -4,7 +4,8 @@
   }
   
   .flipper {
-    height: 180px;
+    width: 70px;
+    height: 100px;
     transform-style: preserve-3d;
     transition: transform 0.5s;
     border-radius: 7px;

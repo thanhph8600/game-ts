@@ -16,7 +16,7 @@ class Pokemon{
             let arrIndex = shuffleArray(random(index))
             let data = await pokemonModel.get(arrIndex)
             let name = localStorage.getItem('savedName');
-            res.render('gamePokemon',{pokemon: data,index:index,name: name});
+            res.render('gamePokemon',{pokemon: data, index:index,name: name});
         } catch (error) {
             console.log(error);
             

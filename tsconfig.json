@@ -9,6 +9,10 @@
       "outDir": "./dist/",
       "rootDir": "./src",
     },
-  "include": ["src/public/js"] // Chỉ biên dịch các tệp trong thư mục src
-
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
   }

@@ -4,11 +4,8 @@ let index = Number($('input[name="index"]').val())
 let sum = index * 2
 
 $(document).on('click','.choosed',async function(){
-
     onFlipper($(this))
-
     $(this).removeClass('choosed')
-
     if (pokemonSelected.length < 2) {
         pokemonSelected.push($(this))
     }
@@ -24,9 +21,7 @@ $(document).on('click','.choosed',async function(){
         }
         pokemonSelected = []
     }
-
     console.log(pokemonSelected);
-    
 })
 
 function onFlipper (element:JQuery) {
@@ -73,7 +68,7 @@ var time = outTime;
 
     // Lấy đối tượng canvas và context
     const canvas: HTMLCanvasElement = document.getElementById("myCanvas") as HTMLCanvasElement;
-    const context: CanvasRenderingContext2D = canvas.getContext("2d");
+    const context: CanvasRenderingContext2D | null = canvas.getContext("2d");
 
     const intervalId = setInterval(renderTime, 1000);
 
@@ -82,47 +77,57 @@ var time = outTime;
       clearInterval(intervalId);
     }, outTime * 1000); // Chuyển đổi giây thành mili giây
 
+
+    
     function renderTime() {
       time -= 1;
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      if(context){
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Vẽ hình tròn
-      var centerX = canvas.width / 2 - 2;
-      var centerY = canvas.height / 2 - 2;
-      var radius = Math.min(canvas.width, canvas.height) / 2 - 4;
+        // Vẽ hình tròn
+        var centerX = canvas.width / 2 - 2;
+        var centerY = canvas.height / 2 - 2;
+        var radius = Math.min(canvas.width, canvas.height) / 2 - 4;
 
-    //   context.beginPath();
-    //   context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-    //   context.stroke();
+            context.beginPath();
+            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            context.lineWidth = 5; // Độ rộng đường vẽ
+            context.strokeStyle = 'gray'; // Màu đường vẽ
+            context.stroke();
 
-      // Vẽ 1/3 hình tròn
-      var startAngle = 0;
-      var endAngle = (time / (outTime)) * 2 * Math.PI;
+        // Vẽ 1/3 hình tròn
+        var startAngle = 0;
+        var endAngle = (time / (outTime)) * 2 * Math.PI;
 
-      context.beginPath();
-      context.arc(centerX, centerY, radius, startAngle, endAngle);
-      context.lineWidth = 5; // Độ rộng đường vẽ
-      context.strokeStyle = 'red'; // Màu đường vẽ
-      context.stroke();
+        context.beginPath();
+        context.arc(centerX, centerY, radius, startAngle, endAngle);
+        context.lineWidth = 5; // Độ rộng đường vẽ
+        context.strokeStyle = 'red'; // Màu đường vẽ
+        context.stroke();
 
-      // Thêm số vào giữa
-      var minute = Math.floor(time / 60);
-      var second = time % 60;
+        // Thêm số vào giữa
+        var minute = Math.floor(time / 60);
+        var second = time % 60;
 
-      var number = `${minute} : ${second}`;
-      context.font = "20px Arial";
-      context.fillStyle = "black";
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-      context.fillText(number, centerX, centerY);
+        var number = `${minute} : ${second}`;
+        context.font = "20px Arial";
+        context.fillStyle = "black";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillText(number, centerX, centerY);
+      }
 
       // Log giá trị của time
       console.log(time);
 
       // Kiểm tra nếu hết thời gian thì dừng interval
       if (time <= 0) {
-        alert('Bạn đã hết giờ')
-        $('.choosed').removeClass('choosed')
+        $('.choosed').removeClass('choosed');
+        $('.popup').removeClass('hidden')
         clearInterval(intervalId);
       }
     }
+
+$(document).on('click','.close-popup',function(){
+    $('.popup').addClass('hidden')
+})
